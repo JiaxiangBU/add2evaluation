@@ -1,0 +1,55 @@
+---
+title: "Get the xgboost model of log"
+author: "Jiaixang Li"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Assume we train a xgboost model and want to save the params for further comparisons.
+
+```{r eval=F}
+set.seed(123)
+start_time <- now()
+xgb_base05 <- xgb.train(
+    data=dtrain03.0,
+    ### 1
+    eta = 0.3,
+    nround=200,
+    ### 2
+    max_depth = 11,
+    min_child_weight = 42,  
+    gamma = 2.5,
+    ### 3
+    subsample = 0.8	,
+    colsample_bytree = 0.6,
+    ### 评价标准
+    ### eval.metric = "error",
+    eval.metric = "mae",
+    eval.metric = "rmse",
+    ### eval.metric = ks_value,
+    ### eval.metric = "auc",
+    ### eval.metric = "logloss",
+    ### objective
+    objective = "reg:tweedie", ### 这是一个回归问题
+    ### 其他
+    seed = 123,
+    watchlist=watchlist03.0,
+    nfold = 30,
+    early_stopping_rounds = 50,
+    nthread = 8
+    )
+end_time <- now()
+get_log_xgb(xgb_base05,start_time,end_time)
+```
+

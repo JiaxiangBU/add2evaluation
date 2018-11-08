@@ -16,3 +16,13 @@ knitr::opts_chunk$set(
 )
 ```
 
+Assume we have 
+
+1. test dataset `test`
+1. model `xgb_base` which is a xgboost model
+1. we want to save it in the directory `data` with name `my_pred.csv`
+
+```{r eval=F}
+phv_pred(test,xgb_base,dir='data',output_name='my_pred.csv')
+```
+
