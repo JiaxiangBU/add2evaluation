@@ -102,6 +102,65 @@
 </li>
 </ol>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">phv_pred</span>(test,xgb_base,<span class="dt">dir=</span><span class="st">'data'</span>,<span class="dt">output_name=</span><span class="st">'my_pred.csv'</span>)</a></code></pre></div>
+<hr>
+<p>The official target metric on the <a href="http://www.dcjingsai.com/common/cmpt/%E5%9B%BD%E8%83%BD%E6%97%A5%E6%96%B0%E5%85%89%E4%BC%8F%E5%8A%9F%E7%8E%87%E9%A2%84%E6%B5%8B%E5%A4%A7%E8%B5%9B_%E7%AB%9E%E8%B5%9B%E4%BF%A1%E6%81%AF.html">site</a> is not usual, thus here is the function I wrap the metric into.</p>
+<p>Assume you finish your model and get four coloumn in dataset <code>dataset</code>,</p>
+<ol style="list-style-type: decimal">
+<li>
+<code>id</code> is the id of the phv machine</li>
+<li>
+<code>t</code> is time to record every y and x variables</li>
+<li>
+<code>p</code> is the real power, in this contest, it is the target we want to predict.</li>
+<li>
+<code>phat</code> is the predicted power, we want it to approach the real one.</li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(add2evaluation)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">data</span>(dataset)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">library</span>(lubridate)</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; 载入程辑包：'lubridate'</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt; The following object is masked from 'package:base':</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt;     date</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="kw">library</span>(psych)</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt; ─ Attaching packages ─────────────────────────────────── tidyverse 1.2.1 ─</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt; ✔ ggplot2 3.1.0     ✔ purrr   0.2.5</span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt; ✔ tibble  1.4.2     ✔ dplyr   0.7.7</span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt; ✔ tidyr   0.8.2     ✔ stringr 1.3.1</span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt; ✔ readr   1.1.1     ✔ forcats 0.3.0</span></a>
+<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co">#&gt; ─ Conflicts ───────────────────────────────────── tidyverse_conflicts() ─</span></a>
+<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="co">#&gt; ✖ ggplot2::%+%()           masks psych::%+%()</span></a>
+<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="co">#&gt; ✖ ggplot2::alpha()         masks psych::alpha()</span></a>
+<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="co">#&gt; ✖ lubridate::as.difftime() masks base::as.difftime()</span></a>
+<a class="sourceLine" id="cb2-20" data-line-number="20"><span class="co">#&gt; ✖ lubridate::date()        masks base::date()</span></a>
+<a class="sourceLine" id="cb2-21" data-line-number="21"><span class="co">#&gt; ✖ dplyr::filter()          masks stats::filter()</span></a>
+<a class="sourceLine" id="cb2-22" data-line-number="22"><span class="co">#&gt; ✖ lubridate::intersect()   masks base::intersect()</span></a>
+<a class="sourceLine" id="cb2-23" data-line-number="23"><span class="co">#&gt; ✖ dplyr::lag()             masks stats::lag()</span></a>
+<a class="sourceLine" id="cb2-24" data-line-number="24"><span class="co">#&gt; ✖ lubridate::setdiff()     masks base::setdiff()</span></a>
+<a class="sourceLine" id="cb2-25" data-line-number="25"><span class="co">#&gt; ✖ lubridate::union()       masks base::union()</span></a>
+<a class="sourceLine" id="cb2-26" data-line-number="26">dataset <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb2-27" data-line-number="27"><span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/psych/topics/describe">describe</a></span>()</a>
+<a class="sourceLine" id="cb2-28" data-line-number="28"><span class="co">#&gt; Warning in FUN(newX[, i], ...): min里所有的参数都不存在; 回覆Inf</span></a>
+<a class="sourceLine" id="cb2-29" data-line-number="29"><span class="co">#&gt; Warning in FUN(newX[, i], ...): max里所有的参数都不存在；回覆-Inf</span></a>
+<a class="sourceLine" id="cb2-30" data-line-number="30"><span class="co">#&gt;            vars      n mean   sd median trimmed  mad   min   max range</span></a>
+<a class="sourceLine" id="cb2-31" data-line-number="31"><span class="co">#&gt; short_name    1 183093 2.26 1.18   2.00    2.20 1.48  1.00  4.00  3.00</span></a>
+<a class="sourceLine" id="cb2-32" data-line-number="32"><span class="co">#&gt; t             2 183093  NaN   NA     NA     NaN   NA   Inf  -Inf  -Inf</span></a>
+<a class="sourceLine" id="cb2-33" data-line-number="33"><span class="co">#&gt; p             3 183093 4.85 9.50   0.00    2.26 0.17 -0.40 48.83 49.23</span></a>
+<a class="sourceLine" id="cb2-34" data-line-number="34"><span class="co">#&gt; phat          4 183093 4.84 8.88   0.17    2.47 0.47 -3.55 46.97 50.52</span></a>
+<a class="sourceLine" id="cb2-35" data-line-number="35"><span class="co">#&gt;            skew kurtosis   se</span></a>
+<a class="sourceLine" id="cb2-36" data-line-number="36"><span class="co">#&gt; short_name 0.33    -1.40 0.00</span></a>
+<a class="sourceLine" id="cb2-37" data-line-number="37"><span class="co">#&gt; t            NA       NA   NA</span></a>
+<a class="sourceLine" id="cb2-38" data-line-number="38"><span class="co">#&gt; p          2.60     6.38 0.02</span></a>
+<a class="sourceLine" id="cb2-39" data-line-number="39"><span class="co">#&gt; phat       2.39     5.11 0.02</span></a>
+<a class="sourceLine" id="cb2-40" data-line-number="40"><span class="kw">phv_metric</span>(</a>
+<a class="sourceLine" id="cb2-41" data-line-number="41">    <span class="dt">id =</span> dataset<span class="op">$</span>short_name</a>
+<a class="sourceLine" id="cb2-42" data-line-number="42">    ,<span class="dt">t =</span> dataset<span class="op">$</span>t</a>
+<a class="sourceLine" id="cb2-43" data-line-number="43">    ,<span class="dt">y =</span> dataset<span class="op">$</span>p</a>
+<a class="sourceLine" id="cb2-44" data-line-number="44">    ,<span class="dt">yhat =</span> dataset<span class="op">$</span>phat</a>
+<a class="sourceLine" id="cb2-45" data-line-number="45">)</a>
+<a class="sourceLine" id="cb2-46" data-line-number="46"><span class="co">#&gt; [1] 0.1192559</span></a></code></pre></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
