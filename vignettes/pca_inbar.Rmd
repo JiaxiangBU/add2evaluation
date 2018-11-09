@@ -1,0 +1,29 @@
+---
+title: "Display your Datset in PCA like a Bar plot"
+author: "Jiaxiang Li"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+I get this idea from Silge (2018)'s blog to display the result of PCA in an elegant and easily-read way. 
+Moreover, I think it is a good practice to display the data, and show the PC1 represents what kinds of information of a dataset.
+
+```{r}
+library(add2evaluation)
+pca_inbar(mtcars)
+```
+
+# Reference {-}
+
+Silge, Julia. 2018. “Supervised Learning in R: Case Studies.” 2018. https://campus.datacamp.com/courses/supervised-learning-in-r-case-studies/get-out-the-vote?ex=9.
