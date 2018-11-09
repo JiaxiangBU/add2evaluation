@@ -36,5 +36,5 @@ phv_metric <- function(id,t,y,yhat){
         # 计算单个电场月MAE的平均值
         ungroup() %>%
         summarise(mae_m = mean(mae_m))
-    mae_m
+    mae_m %>% pull()
 }

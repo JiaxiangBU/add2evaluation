@@ -26,3 +26,29 @@ Assume we have
 phv_pred(test,xgb_base,dir='data',output_name='my_pred.csv')
 ```
 
+***
+
+The official target metric on the [site](http://www.dcjingsai.com/common/cmpt/%E5%9B%BD%E8%83%BD%E6%97%A5%E6%96%B0%E5%85%89%E4%BC%8F%E5%8A%9F%E7%8E%87%E9%A2%84%E6%B5%8B%E5%A4%A7%E8%B5%9B_%E7%AB%9E%E8%B5%9B%E4%BF%A1%E6%81%AF.html) is not usual, thus here is the function I wrap the metric into.
+
+Assume you finish your model and get four coloumn in dataset `dataset`,
+
+1. `id` is the id of the phv machine
+1. `t` is time to record every y and x variables
+1. `p` is the real power, in this contest, it is the target we want to predict.
+1. `phat` is the predicted power, we want it to approach the real one.
+
+```{r}
+library(add2evaluation)
+data(dataset)
+library(lubridate)
+library(psych)
+library(tidyverse)
+dataset %>% 
+    describe()
+phv_metric(
+    id = dataset$short_name
+    ,t = dataset$t
+    ,y = dataset$p
+    ,yhat = dataset$phat
+)
+```
