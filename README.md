@@ -3,7 +3,7 @@
 [![Travis build
 status](https://travis-ci.org/JiaxiangBU/add2evaluation.svg?branch=master)](https://travis-ci.org/JiaxiangBU/add2evaluation)
 [![GitHub All
-Releases](https://img.shields.io/github/downloads/atom/atom/total.svg)](https://github.com/JiaxiangBU/add2evaluation)
+Releases](https://img.shields.io/github/downloads/JiaxiangBU/add2evaluation/total.svg)](https://github.com/JiaxiangBU/add2evaluation)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
