@@ -1,13 +1,11 @@
 
-[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![Travis build
-status](https://travis-ci.org/JiaxiangBU/add2evaluation.svg?branch=master)](https://travis-ci.org/JiaxiangBU/add2evaluation)
-[![GitHub All
-Releases](https://img.shields.io/github/downloads/JiaxiangBU/add2evaluation/total.svg)](https://github.com/JiaxiangBU/add2evaluation)
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # add2evaluation
+
+<!-- badges: start -->
+
+<!-- badges: end -->
 
 The goal of add2evaluation is to help save time to train model and get
 prediction in this
@@ -17,17 +15,48 @@ Now I post a discussion
 
 ## Installation
 
-You can install the released version of add2evaluation from
-[Github](https://github.com/JiaxiangBU/add2evaluation) with:
+And the development version from [GitHub](https://github.com/) with:
 
 ``` r
-devtools::install_github('JiaxiangBU/add2evaluation')
-```
-
-``` r
-library(add2evaluation)
+# install.packages("devtools")
+devtools::install_github("JiaxiangBU/add2evaluation")
 ```
 
 ## Example
 
+This is a basic example which shows you how to solve a common problem:
+
+``` r
+library(add2evaluation)
+## basic example code
+```
+
 See the vignettes.
+
+-----
+
+<h4 align="center">
+
+**Code of Conduct**
+
+</h4>
+
+<h6 align="center">
+
+Please note that the `add2evaluation` project is released with a
+[Contributor Code of Conduct](.github/CODE_OF_CONDUCT.md).<br>By
+contributing to this project, you agree to abide by its terms.
+
+</h6>
+
+<h4 align="center">
+
+**License**
+
+</h4>
+
+<h6 align="center">
+
+MIT © [Jiaxiang Li](LICENSE.md)
+
+</h6>

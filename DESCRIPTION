@@ -2,8 +2,12 @@ Package: add2evaluation
 Type: Package
 Title: add to evaluation of model
 Version: 0.1.0
-Authors@R: person("Jiaxiang", "", "Li", role = c("aut", "cre"), email = "alex.lijiaxiang@foxmail.com")
-Maintainer: Jiaxiang Li <alex.lijiaxiang@foxmail.com>
+Authors@R:
+    person(given = "Jiaxiang",
+           family = "Li",
+           role = c("aut", "cre"),
+           email = "alex.lijiaxiang@foxmail.com",
+           comment = c(ORCID = "https://orcid.org/0000-0003-3196-6492"))
 Description: save time to train model and get prediction in this.
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -15,3 +19,5 @@ VignetteBuilder: knitr
 RoxygenNote: 6.1.1
 URL: https://github.com/JiaxiangBU/add2evaluation
 BugReports: https://github.com/JiaxiangBU/add2evaluation/issues
+Imports: 
+    magrittr
