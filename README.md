@@ -5,6 +5,7 @@
 
 <!-- badges: start -->
 
+[![DOI](https://zenodo.org/badge/156731270.svg)](https://zenodo.org/badge/latestdoi/156731270)
 <!-- badges: end -->
 
 The goal of add2evaluation is to help save time to train model and get
