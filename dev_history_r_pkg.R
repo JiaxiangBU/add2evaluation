@@ -79,7 +79,6 @@ use_github_release()
 # add badge and citation --------------------------------------------------
 
 # login zenodo and copy badge in markdown
-file.edit("README.Rmd")
 clipr::write_clip('## Citations
 
 ```{r include=FALSE}
@@ -97,6 +96,7 @@ cat(paste0("```BibTex\\n",citations$BibTex,"\\n```"))
 ```{r echo=FALSE, results=\'asis\'}
 cat(citations$Comments)
 ```')
+file.edit("README.Rmd")
 # 需要等一段时间，有时候 doi 没有显示出来
 rmarkdown::render("README.Rmd")
 rstudioapi::viewer("README.html")
