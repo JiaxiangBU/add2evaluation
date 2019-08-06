@@ -76,6 +76,7 @@ usethis::use_code_of_conduct()
 # https://zenodo.org/account/settings/github/
 # push
 # make public
+file.edit("NEWS.md")
 use_github_release()
 # publish release
 
