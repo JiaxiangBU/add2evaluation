@@ -1,3 +1,5 @@
+# add2evaluation 0.2.0
+
 * Added the function `lift_chart` to plot lift chart.
 
 # add2evaluation 0.1.0
