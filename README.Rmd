@@ -48,6 +48,8 @@ lift_chart(add2evaluation::df, bin_number = 10)
 ```
 
 
+The explanation of lift chart is [here](https://jiaxiangbu.github.io/learn_fe/analysis/lift_chart.html).
+
 ## Citations
 
 ```{r include=FALSE}
