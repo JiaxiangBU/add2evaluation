@@ -40,6 +40,10 @@ rmarkdown::render("README.Rmd")
 file.remove("README.html")
 
 
+# func --------------------------------------------------------------------
+
+file.edit("R/lift_chart.R")
+
 # build -------------------------------------------------------------------
 
 document()
