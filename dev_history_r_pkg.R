@@ -74,6 +74,10 @@ use_news_md()
 use_version()
 file.edit("NEWS.md")
 use_github_release()
+rmarkdown::render("README.Rmd")
+rstudioapi::viewer("README.html")
+safely(file.remove)("README.html")
+# 因为会更新 citations，但是要等一会。
 # publish release
 
 
