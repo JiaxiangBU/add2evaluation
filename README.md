@@ -30,17 +30,7 @@ This is a basic example which shows you how to solve a common problem:
 ``` r
 library(add2evaluation)
 library(dplyr)
-#> Warning: package 'dplyr' was built under R version 3.5.3
-#> 
-#> Attaching package: 'dplyr'
-#> The following objects are masked from 'package:stats':
-#> 
-#>     filter, lag
-#> The following objects are masked from 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
 library(ggplot2)
-#> Warning: package 'ggplot2' was built under R version 3.5.3
 ## basic example code
 ```
 
@@ -50,21 +40,24 @@ See the vignettes.
 lift_chart(add2evaluation::df, bin_number = 10)
 ```
 
-<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+
+The explanation of lift chart is
+[here](https://jiaxiangbu.github.io/learn_fe/analysis/lift_chart.html).
 
 ## Citations
 
-Jiaxiang Li. (2019, August 3). JiaxiangBU/add2evaluation: add2evaluation
-0.1.0 (Version v0.1.0). Zenodo. <http://doi.org/10.5281/zenodo.3359660>
+Jiaxiang Li. (2019, August 6). JiaxiangBU/add2evaluation: add2evaluation
+0.2.0 (Version v0.2.0). Zenodo. <http://doi.org/10.5281/zenodo.3361474>
 
 ``` bibtex
-@misc{jiaxiang_li_2019_3359660,
+@misc{jiaxiang_li_2019_3361474,
   author       = {Jiaxiang Li},
-  title        = {JiaxiangBU/add2evaluation: add2evaluation 0.1.0},
+  title        = {JiaxiangBU/add2evaluation: add2evaluation 0.2.0},
   month        = aug,
   year         = 2019,
-  doi          = {10.5281/zenodo.3359660},
-  url          = {https://doi.org/10.5281/zenodo.3359660}
+  doi          = {10.5281/zenodo.3361474},
+  url          = {https://doi.org/10.5281/zenodo.3361474}
 }
 ```
 
