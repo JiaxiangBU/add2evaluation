@@ -29,10 +29,28 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(add2evaluation)
+library(dplyr)
+#> Warning: package 'dplyr' was built under R version 3.5.3
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
+library(ggplot2)
+#> Warning: package 'ggplot2' was built under R version 3.5.3
 ## basic example code
 ```
 
 See the vignettes.
+
+``` r
+lift_chart(add2evaluation::df, bin_number = 10)
+```
+
+<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
 
 ## Citations
 

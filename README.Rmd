@@ -36,10 +36,17 @@ This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
 library(add2evaluation)
+library(dplyr)
+library(ggplot2)
 ## basic example code
 ```
 
 See the vignettes.
+
+```{r}
+lift_chart(add2evaluation::df, bin_number = 10)
+```
+
 
 ## Citations
 
