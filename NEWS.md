@@ -1,3 +1,5 @@
+# add2evaluation 0.2.1
+
 * Added the vignette and examples for lift chart.
 
 # add2evaluation 0.2.0
