@@ -106,3 +106,8 @@ file.edit("README.Rmd")
 rmarkdown::render("README.Rmd")
 rstudioapi::viewer("README.html")
 safely(file.remove)("README.html")
+
+
+# add vignette ------------------------------------------------------------
+
+use_vignette("lift_chart")
