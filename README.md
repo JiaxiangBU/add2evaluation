@@ -30,20 +30,25 @@ This is a basic example which shows you how to solve a common problem:
 ``` r
 library(add2evaluation)
 library(dplyr)
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
 library(ggplot2)
 ## basic example code
 ```
-
-See the vignettes.
 
 ``` r
 lift_chart(add2evaluation::df, bin_number = 10)
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
 
-The explanation of lift chart is
-[here](https://jiaxiangbu.github.io/learn_fe/analysis/lift_chart.html).
+See the vignettes.
 
 ## Citations
 
