@@ -1,3 +1,5 @@
+* Added the vignette and examples for lift chart.
+
 # add2evaluation 0.2.0
 
 * Added the function `lift_chart` to plot lift chart.
