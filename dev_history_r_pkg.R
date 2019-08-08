@@ -44,13 +44,6 @@ file.remove("README.html")
 
 file.edit("R/lift_chart.R")
 
-# build -------------------------------------------------------------------
-
-document()
-# load_all()
-install()
-
-
 # commit
 
 # add disclaimer ----------------------------------------------------------
@@ -111,3 +104,17 @@ safely(file.remove)("README.html")
 # add vignette ------------------------------------------------------------
 
 use_vignette("lift_chart")
+
+# build -------------------------------------------------------------------
+
+document()
+# load_all()
+install()
+
+
+# pkgdown -----------------------------------------------------------------
+
+start_time <- lubridate::now()
+pkgdown::build_site()
+end_time <- lubridate::now()
+end_time - start_time

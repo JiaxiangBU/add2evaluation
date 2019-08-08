@@ -2,4 +2,6 @@
 
 export("%>%")
 export(lift_chart)
+export(pca_inbar)
+export(phv_metric)
 importFrom(magrittr,"%>%")

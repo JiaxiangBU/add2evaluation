@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Get the xgboost model of log • add2evaluation</title>
+<title>lift chart • add2evaluation</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Get the xgboost model of log">
+<script src="../pkgdown.js"></script><meta property="og:title" content="lift chart">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -89,54 +89,53 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Get the xgboost model of log</h1>
-                        <h4 class="author">Jiaixang Li</h4>
+      <h1>lift chart</h1>
             
-            <h4 class="date">2019-08-08</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/JiaxiangBU/add2evaluation/blob/master/vignettes/xgb_log.Rmd"><code>vignettes/xgb_log.Rmd</code></a></small>
-      <div class="hidden name"><code>xgb_log.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/JiaxiangBU/add2evaluation/blob/master/vignettes/lift_chart.Rmd"><code>vignettes/lift_chart.Rmd</code></a></small>
+      <div class="hidden name"><code>lift_chart.Rmd</code></div>
 
     </div>
 
     
     
-<p>Assume we train a xgboost model and want to save the params for further comparisons.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">start_time &lt;-<span class="st"> </span><span class="kw">now</span>()</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">xgb_base05 &lt;-<span class="st"> </span><span class="kw">xgb.train</span>(</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">    <span class="dt">data=</span>dtrain03<span class="fl">.0</span>,</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">    <span class="co">### 1</span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">    <span class="dt">eta =</span> <span class="fl">0.3</span>,</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">    <span class="dt">nround=</span><span class="dv">200</span>,</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">    <span class="co">### 2</span></a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">    <span class="dt">max_depth =</span> <span class="dv">11</span>,</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">    <span class="dt">min_child_weight =</span> <span class="dv">42</span>,  </a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">    <span class="dt">gamma =</span> <span class="fl">2.5</span>,</a>
-<a class="sourceLine" id="cb1-12" data-line-number="12">    <span class="co">### 3</span></a>
-<a class="sourceLine" id="cb1-13" data-line-number="13">    <span class="dt">subsample =</span> <span class="fl">0.8</span> ,</a>
-<a class="sourceLine" id="cb1-14" data-line-number="14">    <span class="dt">colsample_bytree =</span> <span class="fl">0.6</span>,</a>
-<a class="sourceLine" id="cb1-15" data-line-number="15">    <span class="co">### 评价标准</span></a>
-<a class="sourceLine" id="cb1-16" data-line-number="16">    <span class="co">### eval.metric = "error",</span></a>
-<a class="sourceLine" id="cb1-17" data-line-number="17">    <span class="dt">eval.metric =</span> <span class="st">"mae"</span>,</a>
-<a class="sourceLine" id="cb1-18" data-line-number="18">    <span class="dt">eval.metric =</span> <span class="st">"rmse"</span>,</a>
-<a class="sourceLine" id="cb1-19" data-line-number="19">    <span class="co">### eval.metric = ks_value,</span></a>
-<a class="sourceLine" id="cb1-20" data-line-number="20">    <span class="co">### eval.metric = "auc",</span></a>
-<a class="sourceLine" id="cb1-21" data-line-number="21">    <span class="co">### eval.metric = "logloss",</span></a>
-<a class="sourceLine" id="cb1-22" data-line-number="22">    <span class="co">### objective</span></a>
-<a class="sourceLine" id="cb1-23" data-line-number="23">    <span class="dt">objective =</span> <span class="st">"reg:tweedie"</span>, <span class="co">### 这是一个回归问题</span></a>
-<a class="sourceLine" id="cb1-24" data-line-number="24">    <span class="co">### 其他</span></a>
-<a class="sourceLine" id="cb1-25" data-line-number="25">    <span class="dt">seed =</span> <span class="dv">123</span>,</a>
-<a class="sourceLine" id="cb1-26" data-line-number="26">    <span class="dt">watchlist=</span>watchlist03<span class="fl">.0</span>,</a>
-<a class="sourceLine" id="cb1-27" data-line-number="27">    <span class="dt">nfold =</span> <span class="dv">30</span>,</a>
-<a class="sourceLine" id="cb1-28" data-line-number="28">    <span class="dt">early_stopping_rounds =</span> <span class="dv">50</span>,</a>
-<a class="sourceLine" id="cb1-29" data-line-number="29">    <span class="dt">nthread =</span> <span class="dv">8</span></a>
-<a class="sourceLine" id="cb1-30" data-line-number="30">    )</a>
-<a class="sourceLine" id="cb1-31" data-line-number="31">end_time &lt;-<span class="st"> </span><span class="kw">now</span>()</a>
-<a class="sourceLine" id="cb1-32" data-line-number="32"><span class="kw">get_log_xgb</span>(xgb_base05,start_time,end_time)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(add2evaluation)</a></code></pre></div>
+<p>参考 <span class="citation">Goldschmidt (2016)</span></p>
+<blockquote>
+<p>You can use this lift chart to verify that your model is doing what you expect from it.</p>
+</blockquote>
+<p>相对于 KS 图等，参考 <a href="https://github.com/JiaxiangBU/pyks">pyks</a>，lift 图更能直观地向业务解释模型效果。</p>
+<blockquote>
+<p>The basic idea of lift analysis is as follows:</p>
+<p>group data based on the predicted churn probability (value between 0.0 and 1.0). Typically, you look at deciles, so you’d have 10 groups: 0.0 - 0.1, 0.1 - 0.2, …, 0.9 - 1.0 calculate the true churn rate per group. That is, you count how many people in each group churned and divide this by the total number of customers per group.</p>
+</blockquote>
+<p>将预测值等值分到10份，计算每份中的真正 y 均值，查看单调性。</p>
+<p><img src="https://www.kdnuggets.com/wp-content/uploads/lift-chart-churn-rate.png"></p>
+<p><span class="math display">\[\text { lift }=(\text { predicted rate } / \text { average rate })\]</span></p>
+<blockquote>
+<p>Looking back at our example chart, the highest group would have a lift of 0.97 / 0.2 = 4.85 and the second-highest group of 1.8. That means, if you only target users with a score higher than 0.9, you can expect to catch nearly five times more churning users than you would by targeting the same number of people randomly.</p>
+</blockquote>
+<p>因此通过观测图，我们可以发现，</p>
+<p>最后一个组的 lift 值为 0.97 / 0.2 = 4.85，表示这组内某一个人，比随机抽一个人，流失率高达5倍左右。</p>
+<p>具体实际例子参考 <strong>3.1 lift curve</strong> <a href="https://jiaxiangli.netlify.com/2018/06/03/kaggle-house-prices/#lift-curve" class="uri">https://jiaxiangli.netlify.com/2018/06/03/kaggle-house-prices/#lift-curve</a></p>
+<div class="section level1 unnumbered">
+<h1>参考文献</h1>
+<div id="refs" class="references">
+<div id="ref-Goldschmidt2016">
+<p>Goldschmidt, Andy. 2016. “Lift Analysis – a Data Scientist’s Secret Weapon.” KDnuggets. 2016. <a href="https://www.kdnuggets.com/2016/03/lift-analysis-data-scientist-secret-weapon.html">https://www.kdnuggets.com/2016/03/lift-analysis-data-scientist-secret-weapon.html</a>.</p>
+</div>
+</div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+        <div id="tocnav">
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+<li><a href="NA">参考文献</a></li>
+      </ul>
+</div>
       </div>
 
 </div>

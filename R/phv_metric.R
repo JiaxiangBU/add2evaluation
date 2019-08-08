@@ -1,3 +1,5 @@
+#' Build the evaluation metrics for the competition phv.
+#' @export
 phv_metric <- function(id,t,y,yhat){
     tmp <-
         tibble(

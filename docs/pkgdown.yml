@@ -1,7 +1,8 @@
 pandoc: 2.3.1
-pkgdown: 1.1.0.9000
-pkgdown_sha: 012d46f513daf68d24bfee7e3a1622137aa62228
+pkgdown: 1.3.0
+pkgdown_sha: ~
 articles:
+  lift_chart: lift_chart.html
   pca_inbar: pca_inbar.html
   phv_pred: phv_pred.html
   xgb_log: xgb_log.html
