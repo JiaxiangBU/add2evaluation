@@ -1,3 +1,5 @@
+#' Run PCA model for a dataset and build a plot.
+#' @export
 pca_inbar <- function(data){
     library(irlba)
     library(data.table)
