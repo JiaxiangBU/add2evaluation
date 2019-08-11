@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 library(add2evaluation)
 ```
 
-参考 @Goldschmidt2016
+参考 @Goldschmidt2016, @Goldschmidt2016Origin
 
 > You can use this lift chart to verify that your model is doing what you expect from it.
 
@@ -34,7 +34,9 @@ library(add2evaluation)
 
 ![](https://www.kdnuggets.com/wp-content/uploads/lift-chart-churn-rate.png)
 
-$$\text { lift }=(\text { predicted rate } / \text { average rate })$$
+$$\operatorname{lift}=\frac{\text { predicted rate }}{\text { average rate }}$$
+
+$\text { average rate }$指的是分组内的真实值的平均值。
 
 > Looking back at our example chart, the highest group would have a lift of 0.97 / 0.2 = 4.85 and the second-highest group of 1.8. That means, if you only target users with a score higher than 0.9, you can expect to catch nearly five times more churning users than you would by targeting the same number of people randomly.
 
