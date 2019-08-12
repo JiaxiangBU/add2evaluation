@@ -30,6 +30,7 @@ file.edit("DESCRIPTION")
 # coding ------------------------------------------------------------------
 
 file.edit("R/lift_chart.R")
+devtools::load_all()
 # add title
 
 # prettify ----------------------------------------------------------------
