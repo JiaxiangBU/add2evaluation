@@ -113,6 +113,12 @@ Cost ($) | Total Customers Contacted | Positive Responses
 -- | -- | --
 100000 | 100000 | 20000
 
+![](https://user-images.githubusercontent.com/15884785/62838184-54399480-bcab-11e9-9a8c-1b294a35c7fb.png)
+
+@Vuk2006 定义为 TP 和 Obs 的关系。
+
+
+
 ![Cumulative Gains Chart 图中，就已经计算了 lift curve 相关内容](https://user-images.githubusercontent.com/15884785/62837874-3407d680-bca7-11e9-9598-d56c2a2f6466.png)
 
 > The graph is constructed with the cumulative number of cases (in descending order of probability) on the x-axis and the cumulative number of true positives on the y-axis as shown below.
