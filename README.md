@@ -25,44 +25,21 @@ devtools::install_github("JiaxiangBU/add2evaluation")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
-``` r
-library(add2evaluation)
-library(dplyr)
-#> 
-#> Attaching package: 'dplyr'
-#> The following objects are masked from 'package:stats':
-#> 
-#>     filter, lag
-#> The following objects are masked from 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
-library(ggplot2)
-## basic example code
-```
-
-``` r
-lift_chart(add2evaluation::df, bin_number = 10)
-```
-
-<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
-
 See the vignettes.
 
 ## Citations
 
-Jiaxiang Li. (2019, August 6). JiaxiangBU/add2evaluation: add2evaluation
-0.2.0 (Version v0.2.0). Zenodo. <http://doi.org/10.5281/zenodo.3361474>
+Jiaxiang Li. (2019, August 7). JiaxiangBU/add2evaluation: add2evaluation
+0.2.1 (Version v0.2.1). Zenodo. <http://doi.org/10.5281/zenodo.3362470>
 
 ``` bibtex
-@misc{jiaxiang_li_2019_3361474,
+@misc{jiaxiang_li_2019_3362470,
   author       = {Jiaxiang Li},
-  title        = {JiaxiangBU/add2evaluation: add2evaluation 0.2.0},
+  title        = {JiaxiangBU/add2evaluation: add2evaluation 0.2.1},
   month        = aug,
   year         = 2019,
-  doi          = {10.5281/zenodo.3361474},
-  url          = {https://doi.org/10.5281/zenodo.3361474}
+  doi          = {10.5281/zenodo.3362470},
+  url          = {https://doi.org/10.5281/zenodo.3362470}
 }
 ```
 

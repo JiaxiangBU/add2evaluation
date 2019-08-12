@@ -48,6 +48,16 @@ $\text { average rate }$指的是分组内的真实值的平均值。
 
 具体实际例子参考 **3.1 lift curve** https://jiaxiangli.netlify.com/2018/06/03/kaggle-house-prices/#lift-curve
 
+```{r}
+library(dplyr)
+library(ggplot2)
+## basic example code
+```
+
+```{r}
+lift_chart(add2evaluation::df, bin_number = 10)
+```
+
 # Decile Chart
 
 参考 @Keating2019
