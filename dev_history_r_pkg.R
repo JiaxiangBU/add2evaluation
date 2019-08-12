@@ -31,6 +31,7 @@ file.edit("DESCRIPTION")
 
 file.edit("R/lift_chart.R")
 devtools::load_all()
+cum_gains_chart(add2evaluation::df)
 # add title
 
 # prettify ----------------------------------------------------------------

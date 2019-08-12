@@ -71,5 +71,11 @@ lift_chart(add2evaluation::df, bin_number = 10)
 decile_chart(add2evaluation::df, bin_number = 10)
 ```
 
+# Cumulative Gains Chart
+
+```{r}
+cum_gains_chart(add2evaluation::df)
+```
+
 
 # 参考文献 {-}

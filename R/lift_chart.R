@@ -37,6 +37,27 @@ decile_chart <- function(table, bin_number = 10){
         )
 }
 
+#' Plot the cumulative gains chart.
+#' @param table The data.frame with two columns named by \code{y} and \code{yhat}.
+#' @export
+#' @example
+#' cum_gains_chart(add2evaluation::df)
+cum_gains_chart <- function(table) {
+  table %>%
+      arrange(desc(yhat)) %>%
+      mutate(
+          pos_pctg = cumsum(y)/sum(y),
+          obs_pctg = row_number()/n()
+      ) %>%
+      ggplot() +
+      aes(obs_pctg, pos_pctg) +
+      geom_line() +
+      geom_abline(slope=1, intercept=0, col = 'red') +
+      theme(axis.text.x = element_text(angle = 90)) +
+      labs(x = "% Obs",
+           y = "% Positive Response")
+}
+
 #' Output the dataframe table of lift chart.
 #' @param table The data.frame with two columns named by \code{y} and \code{yhat}.
 #' @param bin_number default 10. The binning set number.
