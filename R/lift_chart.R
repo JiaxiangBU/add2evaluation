@@ -15,6 +15,9 @@ lift_chart <- function(table, bin_number = 10){
         )
 }
 
+#' Output the dataframe table of lift chart.
+#' @param table The data.frame with two columns named by \code{y} and \code{yhat}.
+#' @param bin_number default 10. The binning set number.
 lift_table <- function(table, bin_number = 10){
   table %>%
       mutate(yhat_bin = cut_number(yhat,bin_number)) %>%
