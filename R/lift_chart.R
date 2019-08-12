@@ -58,6 +58,29 @@ cum_gains_chart <- function(table) {
            y = "% Positive Response")
 }
 
+#' Plot the cumulative lift chart.
+#' @param table The data.frame with two columns named by \code{y} and \code{yhat}.
+#' @export
+#' @example
+#' cum_lift_chart(add2evaluation::df)
+cum_lift_chart <- function(table) {
+  table %>%
+      arrange(desc(yhat)) %>%
+      mutate(
+          local_mean = cummean(y),
+          global_mean = mean(y),
+          lift = local_mean/global_mean,
+          obs_pctg = row_number()/n()
+      ) %>%
+      ggplot() +
+      aes(obs_pctg, lift) +
+      geom_hline(yintercept=1, col = 'red') +
+      geom_line() +
+      theme(axis.text.x = element_text(angle = 90)) +
+      labs(x = "% Obs",
+           y = "Lift")
+}
+
 #' Output the dataframe table of lift chart.
 #' @param table The data.frame with two columns named by \code{y} and \code{yhat}.
 #' @param bin_number default 10. The binning set number.

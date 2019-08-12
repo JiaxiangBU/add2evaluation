@@ -19,6 +19,18 @@ knitr::opts_chunk$set(
 library(add2evaluation)
 ```
 
+
+> Lift is a measure of the effectiveness of a predictive model calculated as the ratio between the results obtained with and without the predictive model.
+[@Hamilton2019]
+
+这句话提纲挈领，就是比较有模型和没有模型的效果。
+ROC 曲线也适用这句话。
+
+> The greater the area between the lift curve and the baseline, the better the model.
+[@Hamilton2019]
+
+这种直观判断类似于 AUC 和 KS 的判断。
+
 # Lift Chart
 
 参考 @Goldschmidt2016, @Goldschmidt2016Origin
@@ -73,9 +85,64 @@ decile_chart(add2evaluation::df, bin_number = 10)
 
 # Cumulative Gains Chart
 
+
+> It is convenient to look at the cumulative lift chart (sometimes called a gains chart) 
+[@Keating2019]
+
+Gain 图 和 Lift 图的术语常常混淆，这里以***Cumulative Gains Chart*为主。
+
+参考 @Hamilton2019
+
+Cost ($) | Total Customers Contacted | Positive Responses
+-- | -- | --
+10000 | 10000 | 6000
+20000 | 20000 | 10000
+30000 | 30000 | 13000
+40000 | 40000 | 15800
+50000 | 50000 | 17000
+60000 | 60000 | 18000
+70000 | 70000 | 18800
+80000 | 80000 | 19400
+90000 | 90000 | 19800
+100000 | 100000 | 20000
+
+相比较于随机模型(如下)，Cum Gain 是不同的。但是注意上面的图是**累计状态**的。
+
+
+Cost ($) | Total Customers Contacted | Positive Responses
+-- | -- | --
+100000 | 100000 | 20000
+
+![Cumulative Gains Chart 图中，就已经计算了 lift curve 相关内容](https://user-images.githubusercontent.com/15884785/62837874-3407d680-bca7-11e9-9598-d56c2a2f6466.png)
+
+> The graph is constructed with the cumulative number of cases (in descending order of probability) on the x-axis and the cumulative number of true positives on the y-axis as shown below.
+[@Keating2019]
+
+计算逻辑显示是累计状态。
+
+
 ```{r}
 cum_gains_chart(add2evaluation::df)
 ```
 
+
+# Cumulative Lift Chart
+
+参考 @Hamilton2019, @Lasek2017
+
+![For contacting 10% of customers, using no model, we should get 10% of responders and using the given model, we should get 30% of responders. The y-value of the lift curve at 10% is 30 / 10 = 3[@Hamilton2019].](https://user-images.githubusercontent.com/15884785/62837918-d1630a80-bca7-11e9-87a0-621bc3df04d4.png)
+
+> For example, by contacting only 10% of customers based on the predictive model we will reach 3 times as many respondents as if we use no model.
+[@Hamilton2019]
+
+三倍的效果，就是在没有做 AB test 的**效果预测**。
+
+同时 % 可以估计份额，我们就可以估计 P * V = R，非常符合业务逻辑。
+
+```{r}
+cum_lift_chart(add2evaluation::df)
+```
+
+两条线在 100% 累计样本处汇合。
 
 # 参考文献 {-}
