@@ -1,5 +1,5 @@
 ---
-title: "lift chart"
+title: "Lift Chart 图及其变形"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{lift_chart}
@@ -18,6 +18,8 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(add2evaluation)
 ```
+
+# Lift Chart
 
 参考 @Goldschmidt2016, @Goldschmidt2016Origin
 
@@ -45,6 +47,14 @@ $\text { average rate }$指的是分组内的真实值的平均值。
 最后一个组的 lift 值为 0.97 / 0.2 = 4.85，表示这组内某一个人，比随机抽一个人，流失率高达5倍左右。
 
 具体实际例子参考 **3.1 lift curve** https://jiaxiangli.netlify.com/2018/06/03/kaggle-house-prices/#lift-curve
+
+# Decile Chart
+
+参考 @Keating2019
+
+> The bars show the factor by which our model outperforms a random assignment of 0's and 1's. Reading the first bar on the left, we see that taking the 10% of the records that are ranked by the model as "the most probable 1's" yields twice as many 1's as would a random selection of 10% of the records.
+
+![Decile Chart 查看的是每个组内，decile mean 和 global mean 的差异，查看了模型和随机状态的差异。](https://user-images.githubusercontent.com/15884785/62838085-f9ec0400-bca9-11e9-96e1-b1a0e35191b3.png)
 
 
 # 参考文献 {-}
