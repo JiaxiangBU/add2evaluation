@@ -67,4 +67,9 @@ lift_chart(add2evaluation::df, bin_number = 10)
 ![Decile Chart 查看的是每个组内，decile mean 和 global mean 的差异，查看了模型和随机状态的差异。](https://user-images.githubusercontent.com/15884785/62838085-f9ec0400-bca9-11e9-96e1-b1a0e35191b3.png)
 
 
+```{r}
+decile_chart(add2evaluation::df, bin_number = 10)
+```
+
+
 # 参考文献 {-}
