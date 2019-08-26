@@ -2,17 +2,11 @@ Package: add2evaluation
 Type: Package
 Title: add to evaluation of model
 Version: 0.2.1
-Authors@R:
-    c(person(given = "Jiaxiang",
+Authors@R: 
+    person(given = "Jiaxiang",
            family = "Li",
            role = c("aut", "cre"),
-           email = "alex.lijiaxiang@foxmail.com",
-           comment = c(ORCID = "https://orcid.org/0000-0003-3196-6492")),
-    person(given = "Nakagawara",
-           family = "Ryo",
-           role = c("aut"),
-           email = "ryonakagawara@gmail.com",
-           comment = c(Blog = "https://ryo-n7.github.io/2019-08-21-visualize-soccer-statsbomb-part-1/)))
+           email = "alex.lijiaxiang@foxmail.com")
 Description: save time to train model and get prediction in this.
 License: MIT + file LICENSE
 Encoding: UTF-8

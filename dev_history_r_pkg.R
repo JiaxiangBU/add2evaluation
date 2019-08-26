@@ -36,6 +36,9 @@ cum_lift_chart(add2evaluation::df)
 # add title
 
 use_r("add_logo")
+library(fs)
+file_move("R/add_logo.R", "../add2ggplot/R/")
+file.edit("DESCRIPTION")
 
 # prettify ----------------------------------------------------------------
 
