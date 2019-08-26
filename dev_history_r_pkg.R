@@ -42,6 +42,7 @@ file.edit("DESCRIPTION")
 
 library(devtools)
 use_r("groom_model")
+use_vignette("use_groom_model")
 
 # prettify ----------------------------------------------------------------
 
