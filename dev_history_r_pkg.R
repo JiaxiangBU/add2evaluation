@@ -40,6 +40,9 @@ library(fs)
 file_move("R/add_logo.R", "../add2ggplot/R/")
 file.edit("DESCRIPTION")
 
+library(devtools)
+use_r("groom_model")
+
 # prettify ----------------------------------------------------------------
 
 use_readme_rmd()
