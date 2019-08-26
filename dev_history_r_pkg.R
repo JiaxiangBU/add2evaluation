@@ -35,6 +35,8 @@ devtools::load_all()
 cum_lift_chart(add2evaluation::df)
 # add title
 
+use_r("add_logo")
+
 # prettify ----------------------------------------------------------------
 
 use_readme_rmd()
