@@ -84,5 +84,24 @@ lift_table <- function(table, bin_number = 10) {
   table %>%
     dplyr::mutate(yhat_bin = ggplot2::cut_number(yhat, bin_number)) %>%
     dplyr::group_by(yhat_bin) %>%
-    dplyr::summarise(y = mean(y))
+    dplyr::summarise(y = mean(y), yhat = mean(yhat))
+}
+
+#' Plot the calibration curve for the binary predictions.
+#' @param table The data.frame with two columns named by \code{y} and \code{yhat}.
+#' @param bin_number default 10. The binning set number.
+#' @export
+#' @example
+#' calibration_curve(add2evaluation::df, bin_number = 10)
+calibration_curve <- function(table, bin_number = 10) {
+  table <- lift_table(table, bin_number = bin_number)
+  table %>%
+    ggplot2::ggplot() +
+    ggplot2::aes(yhat, y) +
+    ggplot2::geom_line() +
+    ggplot2::geom_abline(slope = 1, intercept = 0, color = 'red') +
+    ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90)) +
+    ggplot2::labs(x = "Ave. Pred. Prob.",
+                  y = "Frac. of pos.") +
+    coord_equal()
 }

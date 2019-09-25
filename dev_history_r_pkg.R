@@ -111,8 +111,9 @@ use_vignette("lift_chart")
 
 # build -------------------------------------------------------------------
 
+library(devtools)
 document()
-# load_all()
+load_all()
 install()
 
 

@@ -151,4 +151,10 @@ cum_lift_chart(add2evaluation::df)
 
 两条线在 100% 累计样本处汇合。
 
+# Calibration Curve
+
+```{r}
+calibration_curve(add2evaluation::df)
+```
+
 # 参考文献 {-}
