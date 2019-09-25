@@ -1,0 +1,37 @@
+---
+title: "use_groom_model"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{use_groom_model}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(add2evaluation)
+```
+
+```{r}
+fit <- 
+  mtcars %>% 
+  lm(disp ~ mpg, data = .)
+```
+
+```{r}
+library(zeallot)
+c(model, coefficients, observations) %<-% groom_model(fit)
+```
+
+```{r}
+model
+coefficients
+observations
+```
+

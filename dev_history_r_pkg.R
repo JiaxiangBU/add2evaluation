@@ -35,6 +35,15 @@ devtools::load_all()
 cum_lift_chart(add2evaluation::df)
 # add title
 
+use_r("add_logo")
+library(fs)
+file_move("R/add_logo.R", "../add2ggplot/R/")
+file.edit("DESCRIPTION")
+
+library(devtools)
+use_r("groom_model")
+use_vignette("use_groom_model")
+
 # prettify ----------------------------------------------------------------
 
 use_readme_rmd()
