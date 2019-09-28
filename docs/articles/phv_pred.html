@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Get the prediction of test set • add2evaluation</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Get the prediction of test set">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
@@ -38,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -53,13 +54,16 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/lift_chart.html">lift chart</a>
+      <a href="../articles/lift_chart.html">Lift Chart 图及其变形</a>
     </li>
     <li>
       <a href="../articles/pca_inbar.html">Display your Datset in PCA like a Bar plot</a>
     </li>
     <li>
       <a href="../articles/phv_pred.html">Get the prediction of test set</a>
+    </li>
+    <li>
+      <a href="../articles/use_groom_model.html">use_groom_model</a>
     </li>
     <li>
       <a href="../articles/xgb_log.html">Get the xgboost model of log</a>
@@ -73,7 +77,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/JiaxiangBU/add2evaluation">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -86,13 +90,14 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Get the prediction of test set</h1>
                         <h4 class="author">Jiaixang Li</h4>
             
-            <h4 class="date">2019-08-08</h4>
+            <h4 class="date">2019-09-28</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JiaxiangBU/add2evaluation/blob/master/vignettes/phv_pred.Rmd"><code>vignettes/phv_pred.Rmd</code></a></small>
       <div class="hidden name"><code>phv_pred.Rmd</code></div>
@@ -123,16 +128,16 @@
 <li>
 <code>phat</code> is the predicted power, we want it to approach the real one.</li>
 </ol>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(add2evaluation)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(dataset)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(lubridate)</a>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(add2evaluation)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(dataset)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(lubridate)</a>
 <a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; 载入程辑包：'lubridate'</span></a>
 <a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt; The following object is masked from 'package:base':</span></a>
 <a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt;     date</span></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(psych)</a>
-<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tidyverse)</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(psych)</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyverse)</a>
 <a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt; ─ Attaching packages ────────────────────────────── tidyverse 1.2.1 ─</span></a>
 <a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt; ✔ ggplot2 3.1.0       ✔ purrr   0.2.5  </span></a>
 <a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt; ✔ tibble  2.1.1       ✔ dplyr   0.8.0.1</span></a>
@@ -149,7 +154,7 @@
 <a class="sourceLine" id="cb2-24" data-line-number="24"><span class="co">#&gt; ✖ lubridate::setdiff()     masks base::setdiff()</span></a>
 <a class="sourceLine" id="cb2-25" data-line-number="25"><span class="co">#&gt; ✖ lubridate::union()       masks base::union()</span></a>
 <a class="sourceLine" id="cb2-26" data-line-number="26">dataset <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb2-27" data-line-number="27"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/psych/topics/describe">describe</a></span>()</a>
+<a class="sourceLine" id="cb2-27" data-line-number="27"><span class="st">    </span><span class="kw"><a href="https://rdrr.io/pkg/psych/man/describe.html">describe</a></span>()</a>
 <a class="sourceLine" id="cb2-28" data-line-number="28"><span class="co">#&gt; Warning in FUN(newX[, i], ...): min里所有的参数都不存在; 回覆Inf</span></a>
 <a class="sourceLine" id="cb2-29" data-line-number="29"><span class="co">#&gt; Warning in FUN(newX[, i], ...): max里所有的参数都不存在；回覆-Inf</span></a>
 <a class="sourceLine" id="cb2-30" data-line-number="30"><span class="co">#&gt;            vars      n mean   sd median trimmed  mad   min   max range</span></a>
@@ -177,17 +182,20 @@
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by Jiaxiang Li.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9100.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

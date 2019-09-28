@@ -1,9 +1,10 @@
 pandoc: 2.3.1
-pkgdown: 1.3.0
-pkgdown_sha: ~
+pkgdown: 1.3.0.9100
+pkgdown_sha: 1829398a4e97056fe7fb332d0e8b952784b49321
 articles:
   lift_chart: lift_chart.html
   pca_inbar: pca_inbar.html
   phv_pred: phv_pred.html
+  use_groom_model: use_groom_model.html
   xgb_log: xgb_log.html
 

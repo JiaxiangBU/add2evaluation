@@ -5,7 +5,7 @@
 #' @import ggplot2
 #' @export
 #' @example
-#' lift_chart(add2evaluation::df, bin_number = 10)
+#' \dontrun{lift_chart(add2evaluation::df, bin_number = 10)}
 lift_chart <- function(table, bin_number = 10) {
   table <- lift_table(table, bin_number = bin_number)
   table %>%
@@ -20,7 +20,7 @@ lift_chart <- function(table, bin_number = 10) {
 #' @param bin_number default 10. The binning set number.
 #' @export
 #' @example
-#' decile_chart(add2evaluation::df, bin_number = 10)
+#' \dontrun{decile_chart(add2evaluation::df, bin_number = 10)}
 decile_chart <- function(table, bin_number = 10) {
   global_mean <- mean(table$y)
   table <- lift_table(table, bin_number = bin_number) %>%
@@ -37,7 +37,7 @@ decile_chart <- function(table, bin_number = 10) {
 #' @param table The data.frame with two columns named by \code{y} and \code{yhat}.
 #' @export
 #' @example
-#' cum_gains_chart(add2evaluation::df)
+#' \dontrun{cum_gains_chart(add2evaluation::df)}
 cum_gains_chart <- function(table) {
   table %>%
     dplyr::arrange(dplyr::desc(yhat)) %>%
@@ -58,7 +58,7 @@ cum_gains_chart <- function(table) {
 #' @param table The data.frame with two columns named by \code{y} and \code{yhat}.
 #' @export
 #' @example
-#' cum_lift_chart(add2evaluation::df)
+#' \dontrun{cum_lift_chart(add2evaluation::df)}
 cum_lift_chart <- function(table) {
   table %>%
     dplyr::arrange(dplyr::desc(yhat)) %>%
@@ -92,7 +92,7 @@ lift_table <- function(table, bin_number = 10) {
 #' @param bin_number default 10. The binning set number.
 #' @export
 #' @example
-#' calibration_curve(add2evaluation::df, bin_number = 10)
+#' \dontrun{calibration_curve(add2evaluation::df, bin_number = 10)}
 calibration_curve <- function(table, bin_number = 10) {
   table <- lift_table(table, bin_number = bin_number)
   table %>%
