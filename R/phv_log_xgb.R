@@ -17,7 +17,7 @@ phv_log_xgb <- function(x,start_time,end_time,output='xgboost_result_baseline_tw
             start_time = start_time
             ,end_time = end_time
         ) %>%
-        write_excel_csv(
+        readr::write_excel_csv(
             file.path(
                 'data'
                 ,paste(now() %>% str_remove_all('-|\\s|:'),'xgboost_result_baseline_tweedie.csv',sep='_')

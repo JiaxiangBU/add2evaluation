@@ -12,3 +12,6 @@ cum_lift_chart(table)
 \description{
 Plot the cumulative lift chart.
 }
+\examples{
+\dontrun{cum_lift_chart(add2evaluation::df)}
+}

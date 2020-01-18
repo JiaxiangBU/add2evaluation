@@ -7,3 +7,5 @@
 ^\.Rproj\.user$
 ^dev_history\.R$
 ^CODE_OF_CONDUCT\.md$
+^docs$
+^dev_history_r_pkg\.R$

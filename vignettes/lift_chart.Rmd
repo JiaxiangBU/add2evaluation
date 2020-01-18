@@ -1,5 +1,5 @@
 ---
-title: "Lift Chart 图及其变形"
+title: "Lift Chart and Extensions"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{lift_chart}
@@ -76,7 +76,10 @@ lift_chart(add2evaluation::df, bin_number = 10)
 
 > The bars show the factor by which our model outperforms a random assignment of 0's and 1's. Reading the first bar on the left, we see that taking the 10% of the records that are ranked by the model as "the most probable 1's" yields twice as many 1's as would a random selection of 10% of the records.
 
-![Decile Chart 查看的是每个组内，decile mean 和 global mean 的差异，查看了模型和随机状态的差异。](https://user-images.githubusercontent.com/15884785/62838085-f9ec0400-bca9-11e9-96e1-b1a0e35191b3.png)
+```{r fig.cap="Decile Chart 查看的是每个组内，decile mean 和 global mean 的差异，查看了模型和随机状态的差异。"}
+knitr::include_graphics("../inst/figure/decile_chart.png")
+```
+
 
 
 ```{r}
@@ -113,13 +116,21 @@ Cost ($) | Total Customers Contacted | Positive Responses
 -- | -- | --
 100000 | 100000 | 20000
 
-![](https://user-images.githubusercontent.com/15884785/62838184-54399480-bcab-11e9-9a8c-1b294a35c7fb.png)
+```{r}
+knitr::include_graphics("../inst/figure/tp_with_obs.png")
+```
+
 
 @Vuk2006 定义为 TP 和 Obs 的关系。
 
 
 
-![Cumulative Gains Chart 图中，就已经计算了 lift curve 相关内容](https://user-images.githubusercontent.com/15884785/62837874-3407d680-bca7-11e9-9598-d56c2a2f6466.png)
+
+
+```{r fig.cap="Cumulative Gains Chart 图中，就已经计算了 lift curve 相关内容"}
+knitr::include_graphics("../inst/figure/cumulative_gains_chart.png")
+```
+
 
 > The graph is constructed with the cumulative number of cases (in descending order of probability) on the x-axis and the cumulative number of true positives on the y-axis as shown below.
 [@Keating2019]
@@ -136,7 +147,10 @@ cum_gains_chart(add2evaluation::df)
 
 参考 @Hamilton2019, @Lasek2017
 
-![For contacting 10% of customers, using no model, we should get 10% of responders and using the given model, we should get 30% of responders. The y-value of the lift curve at 10% is 30 / 10 = 3[@Hamilton2019].](https://user-images.githubusercontent.com/15884785/62837918-d1630a80-bca7-11e9-87a0-621bc3df04d4.png)
+```{r fig.cap="For contacting 10% of customers, using no model, we should get 10% of responders and using the given model, we should get 30% of responders. The y-value of the lift curve at 10% is 30 / 10 = 3[@Hamilton2019]."}
+knitr::include_graphics("../inst/figure/life_chart.png")
+```
+
 
 > For example, by contacting only 10% of customers based on the predictive model we will reach 3 times as many respondents as if we use no model.
 [@Hamilton2019]

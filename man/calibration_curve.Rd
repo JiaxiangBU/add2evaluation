@@ -14,3 +14,6 @@ calibration_curve(table, bin_number = 10)
 \description{
 Plot the calibration curve for the binary predictions.
 }
+\examples{
+\dontrun{calibration_curve(add2evaluation::df, bin_number = 10)}
+}

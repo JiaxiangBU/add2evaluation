@@ -14,3 +14,6 @@ lift_chart(table, bin_number = 10)
 \description{
 Plot the lift chart for the binary predictions.
 }
+\examples{
+\dontrun{lift_chart(add2evaluation::df, bin_number = 10)}
+}

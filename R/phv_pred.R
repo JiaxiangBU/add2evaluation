@@ -1,3 +1,4 @@
+#' @import stats
 phv_pred <-
     function(
         testset
@@ -23,10 +24,10 @@ phv_pred <-
                 # 46571
                 # round(.,1)
             ) %>%
-            write_excel_csv(
+            readr::write_excel_csv(
                 file.path(
                     'data'
-                    ,paste(today() %>% str_remove_all('-') %>% str_sub(3,-1),'jiaxiang_prediction_xgboostbaseline_tweedie.csv',sep='_')
+                    ,paste(today() %>% stringr::str_remove_all('-') %>% stringr::str_sub(3,-1),'jiaxiang_prediction_xgboostbaseline_tweedie.csv',sep='_')
                 )
             )
     }

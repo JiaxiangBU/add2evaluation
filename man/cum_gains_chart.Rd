@@ -12,3 +12,6 @@ cum_gains_chart(table)
 \description{
 Plot the cumulative gains chart.
 }
+\examples{
+\dontrun{cum_gains_chart(add2evaluation::df)}
+}

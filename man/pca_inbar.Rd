@@ -6,6 +6,9 @@
 \usage{
 pca_inbar(data)
 }
+\arguments{
+\item{data}{data.frame prepared for running PCA model.}
+}
 \description{
 Run PCA model for a dataset and build a plot.
 }
